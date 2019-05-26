@@ -1,0 +1,54 @@
+
+
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: 15000
+        readTimeout: 25000
+        loggerLevel: full
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: SEMAPHORE
+#          thread:
+#            timeoutInMilliseconds: 20000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+
+spring:
+  rabbitmq:
+      vHost: development
+      host: localhost
+      password: rabbitmq
+      port: 5672
+      username: rabbitmq
+      myExchange: my-exhange
+      myRoutingKey: my-routing-key
+      myQueue: my-queue
+      myDeadLetterExchange: my-dead-letter-exchange
+      myDeadLetterQueue: my-dead-letter-queue
+      myDeadLetterRoutingKey: my-dead-letter-routing-key
+      myWaitingQueue: my-waiting-queue
+      myWaitingExchange: my-waiting-exchange
+      myWaitingQueueRoutingKey: my-waiting-queue-routing-key
+      retryExchange: retry-exchange
+      listener:
+        simple:
+          acknowledge-mode: manual
+        retry:
+          enabled: true
+          initial-interval: 20000
+          max-attempts: 2
+          multiplier: 1.5
+          max-interval: 50000
